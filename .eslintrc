@@ -1,0 +1,45 @@
+{
+  "extends": ["airbnb", "plugin:import/react", "plugin:import/errors",
+  "plugin:import/warnings"],
+  "parserOptions":{
+    "ecmaVersion": 6,
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true
+    }
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "jest": true
+  },
+  "globals": {
+    "document": false
+  },
+  "plugins": [
+    "react",
+    "jsx-a11y",
+    "import"
+  ],
+  "rules": {
+    "no-underscore-dangle": 0,
+    "max-len": 0,
+    "comma-dangle": ["error", "always-multiline"],
+    "class-methods-use-this": 0,
+    "react/require-default-props": 0,
+    "react/prop-types": 0,
+    "react/forbid-prop-types": [1, { "forbid": ["any"]}],
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "import/no-unresolved": [2, { commonjs: true, amd: true }],
+    "import/named": 2,
+    "import/namespace": 2,
+    "import/default": 2,
+    "import/export": 2,
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js",".jsx"]
+      }
+    }
+  }
+}
