@@ -1,0 +1,104 @@
+.main-content {
+  .box {
+    border-radius: 4px;
+    background-color: white;
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.03);
+  }
+  .ui.grid>.row>.column a {
+    color: $dark;
+  }
+  .ui.grid>.row>.column {
+    font-size: 14px;
+  }
+  .pushable {
+    height: 91vh;
+    display: flex;
+    .ui.menu.left.sidebar {
+      width: 186px;
+      border: none;
+      padding-top: 5vh;
+      @media all and (max-width: 800px) {
+        padding-top: 3vh;
+      }
+      @media all and (min-width: 601px) {
+        &~.pusher {
+          -webkit-transform: translate3d(186px,0,0);
+          transform: translate3d(186px,0,0);
+          overflow-y: scroll;
+        }
+      }
+      @media all and (max-width: 600px) {
+        &~.pusher {
+          overflow-y: scroll;
+        }
+      }
+      a.item.icon {
+        padding-left: 3.5vw;
+        > .icon {
+          margin-left: -2vw !important;
+        }
+      }
+      a.item > .icon {
+        float: left;
+        margin: 0 0.5em 0 0;
+      }
+      div.item > .menu {
+        margin-top: 2vh;
+      }
+    }
+    .ui.secondary.vertical.pointing.menu .item {
+      color: $menu-link;
+      font-size: 14px;
+      margin: 0;
+      &.active {
+        border-right: none;
+        border-left: 4px solid $light-green;
+        color: $menu-link-active;
+      }
+    }
+  }
+  .ui.menu {
+    background: $dark;
+    border: none;
+    border-radius: 0;
+    margin-bottom: 0;
+    .item {
+      &-logo {
+        background: black;
+        border-radius: 0;
+      }
+      &-logout {
+        background: black;
+        margin-left: 0 !important;
+        a {
+          color: $menu-item;
+          font-size: 2rem;
+        }
+      }
+      .ui.dropdown {
+        color: $menu-item;
+        > i {
+          font-size: 2rem;
+        }
+        .text {
+          color: $menu-item;
+        }
+      }
+    }
+  }
+  .logo {
+    padding: 0;
+    img {
+      width: 154px;
+      height: 30px;
+    }
+  }
+  .mobile-header {
+    background: $dark;
+    display: flex;
+    flex-direction: row;
+    height: 70px;
+    padding: 0 3vw;
+    align-items: center;
+  }
+}

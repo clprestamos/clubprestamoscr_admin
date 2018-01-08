@@ -1,0 +1,50 @@
+.steps {
+  padding: 30px 0;
+  .numbers {
+    flex-direction: row;
+    justify-content: center;
+    li > button {
+      cursor: default;
+      font-size: 16px;
+      font-weight: bold;
+      color: #FFF;
+      border-radius: 50%;
+      width: 29px;
+      height: 29px;
+      text-align: center;
+      line-height: 1.75;
+      &:nth-child(odd) {
+        background-color: $inactive;
+        border: 1px solid $inactive;
+      }
+      &.active {
+        background-color: $active;
+        border-color: $active;
+      }
+      &.complete {
+        background-color: $light-green;
+        border: 1px solif $light-green;
+        cursor: pointer;
+        padding-left: 4px;
+      }
+    }
+  }
+  .ovals {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    height: 30px;
+    width: 30px;
+    margin: 0 30px;
+    li {
+      width: 4px;
+      height: 4px;
+      &.oval {
+        cursor: default;
+        margin-right: 4px;
+        margin-top: 8px;
+        background-color: #d8d8d8;
+      }
+    }
+  }
+}
