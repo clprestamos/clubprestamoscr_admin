@@ -1,0 +1,6 @@
+@mixin input-field($borderColor, $color) {
+  background-color: transparent;
+  border: solid 1px $borderColor;
+  border-radius: inherit;
+  color: $color;
+}

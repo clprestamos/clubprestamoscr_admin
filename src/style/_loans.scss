@@ -1,0 +1,72 @@
+.loans {
+  padding: 8vh 4vw;
+  @media all and (max-width: 768px) {
+    padding-top: 4vh;
+  }
+  @media all and (min-width: 601px) {
+    width: calc(100vw - 186px);
+  }
+  .ui.table {
+    border: none;
+    th {
+      background: none;
+      color: $dark-gray;
+      font-family: 'Hind', sans-serif;
+      font-size: 14px;
+      font-weight: 300;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+      &:first-child {
+        text-align: center;
+      }
+    }
+    tr.active {
+      background: $row-active !important;
+    }
+    td {
+      color: $dark;
+      font-size: 14px;
+      font-weight: 500;
+      &:first-child {
+        text-align: center;
+      }
+    }
+  }
+  .ui.message {
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+    &.box {
+      border-radius: 2px;
+      box-shadow: 0 2px 20px 0 rgba(0,0,0,0.3);
+    }
+    .content {
+      font-size: 18px;
+      color: $dark-green;
+      .header {
+        color: $dark-gray;
+        line-height: 2;
+      }
+    }
+  }
+  .ui.card {
+    width: 100vw;
+    @extend .box;
+    > .content:first-child {
+      border-radius: 4px;
+      box-shadow: 0 5px 9px 0 rgba(0,0,0,.06);
+      height: 82px;
+      display: flex;
+      align-items: center;
+      font-size: 20px;
+      font-weight: bold;
+      color: $dark;
+    }
+    > .content {
+      border: none;
+      &.content-form {
+        padding: 60px 55px;
+      }
+    }
+  }
+}

@@ -1,0 +1,49 @@
+.register {
+  .static-content {
+    width: 46.32vw;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    @media all and (max-width: 1024px) {
+      width: 100vw;
+      padding-top: 10vh;
+      padding-bottom: 10vh;
+    }
+    .title {
+      align-items: flex-start;
+      justify-content: flex-start;
+    }
+    .title, .divider, .content {
+      width: 25vw;
+      @media all and (max-width: 1024px) {
+        width: 75vw;
+      }
+    }
+    .content {
+      p {
+        color: #FFF;
+        font-size: 1.25rem;
+        line-height: 30px;
+        @media all and (max-width: 320px) {
+          font-size: 1rem;
+          line-height: 1.5;
+        }
+        span {
+          color: #f9ec31;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+  h1 {
+    font-size: 45px;
+    font-weight: bold;
+    text-transform: uppercase;
+    line-height: 1.18;
+    @media all and (max-width: 320px) {
+      font-size: 2.5rem;
+    }
+  }
+}
