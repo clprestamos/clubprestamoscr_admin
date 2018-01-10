@@ -16,7 +16,8 @@ import Dashboard from './Dashboard';
 import Inversionistas from './Inversionistas';
 import Clientes from './Clientes';
 import Prestamos from './Prestamos';
-import Perfil from './Perfil';
+import Inversionista from './Inversionista';
+import Cliente from './Cliente';
 
 class Main extends Component {
   constructor(props) {
@@ -65,11 +66,6 @@ class Main extends Component {
         text: 'Préstamos',
         url: '/dashboard/prestamos',
       },
-      {
-        name: 'perfil',
-        text: 'Perfil',
-        url: '/dashboard/perfil',
-      },
     ];
     const trigger = (
       <span>
@@ -92,7 +88,7 @@ class Main extends Component {
     if (!this.props.authData.isAuth) {
       return <Redirect to="/login" />;
     }
-    const { section } = this.props.match.params;
+    const { section, userId } = this.props.match.params;
     return (
       <div className="main-content">
         <Menu stackable>
@@ -162,11 +158,12 @@ class Main extends Component {
           </Sidebar>
           <Sidebar.Pusher>
             { !section ? <Dashboard /> : '' }
-            { section && section === 'dashboard' ? <Dashboard /> : '' }
-            { section && section === 'inversionistas' ? <Inversionistas /> : '' }
-            { section && section === 'clientes' ? <Clientes /> : '' }
-            { section && section === 'prestamos' ? <Prestamos /> : '' }
-            { section && section === 'perfil' ? <Perfil /> : '' }
+            { section && section === 'dashboard' && !userId ? <Dashboard /> : '' }
+            { section && section === 'inversionistas' && !userId ? <Inversionistas /> : '' }
+            { section && section === 'clientes' && !userId ? <Clientes /> : '' }
+            { section && section === 'prestamos' && !userId ? <Prestamos /> : '' }
+            { section && section === 'inversionistas' && userId ? <Inversionista /> : '' }
+            { section && section === 'clientes' && userId ? <Cliente /> : '' }
           </Sidebar.Pusher>
         </Sidebar.Pushable>
       </div>
