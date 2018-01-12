@@ -90,10 +90,10 @@ export function getClientInfo(userId) {
         endpoint: `/users/${userId}`,
       })
         .then((response) => {
-          dispatch(getClientInfoSuccess(response.body[0]));
           dispatch(Locales.getProvinces());
           dispatch(Locales.getCantons(response.body[0].province));
           dispatch(Locales.getDistricts(response.body[0].province, response.body[0].canton));
+          dispatch(getClientInfoSuccess(response.body[0]));
         })
         .catch(error => dispatch(getClientInfoError(error)));
     } catch (error) {

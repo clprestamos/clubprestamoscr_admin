@@ -9,6 +9,35 @@
   @media all and (max-width: 600px) {
     width: auto;
   }
+  .ui.card {
+    width: 100vw;
+    @extend .box;
+    > .content:first-child {
+      border-radius: 4px;
+      box-shadow: 0 5px 9px 0 rgba(0,0,0,.06);
+      height: 82px;
+      display: flex;
+      align-items: center;
+      font-size: 20px;
+      font-weight: bold;
+      color: $dark;
+      > .header {
+        font-size: 24px;
+        font-family: Hind;
+        font-weight: bold;
+        color: $dark-gray;
+      }
+    }
+    > .content {
+      border: none;
+      &.content-form {
+        padding: 60px 55px;
+      }
+    }
+  }
+  .loan-list > .content {
+    padding: 0;
+  }
   .ui.form {
     .field {
       margin-bottom: 2rem;

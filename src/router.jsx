@@ -36,12 +36,12 @@ const Routes = (props) => {
   return (
     <Router>
       <Switch>
-        <PrivateRoute exact path="/dashboard/:section?/:userId?" component={Main} />
+        <PrivateRoute exact path="/dashboard/:section?/:id?" component={Main} />
         <Route path="/login" component={Login} />
         <Route path="/logout" component={Logout} />
         <Route path="/cambiar-password/:passwordKey" component={ChangePassword} />
         <Route path="/not-found" component={NotFound} />
-        <Redirect from="*" to="/not-found" />
+        <Redirect from="*" to="/dashboard" />
       </Switch>
     </Router>
   );

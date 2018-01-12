@@ -18,6 +18,7 @@ import Clientes from './Clientes';
 import Prestamos from './Prestamos';
 import Inversionista from './Inversionista';
 import Cliente from './Cliente';
+import Prestamo from './Prestamo';
 
 class Main extends Component {
   constructor(props) {
@@ -88,7 +89,7 @@ class Main extends Component {
     if (!this.props.authData.isAuth) {
       return <Redirect to="/login" />;
     }
-    const { section, userId } = this.props.match.params;
+    const { section, id } = this.props.match.params;
     return (
       <div className="main-content">
         <Menu stackable>
@@ -158,12 +159,13 @@ class Main extends Component {
           </Sidebar>
           <Sidebar.Pusher>
             { !section ? <Dashboard /> : '' }
-            { section && section === 'dashboard' && !userId ? <Dashboard /> : '' }
-            { section && section === 'inversionistas' && !userId ? <Inversionistas /> : '' }
-            { section && section === 'clientes' && !userId ? <Clientes /> : '' }
-            { section && section === 'prestamos' && !userId ? <Prestamos /> : '' }
-            { section && section === 'inversionistas' && userId ? <Inversionista /> : '' }
-            { section && section === 'clientes' && userId ? <Cliente /> : '' }
+            { section && section === 'dashboard' && !id ? <Dashboard /> : '' }
+            { section && section === 'inversionistas' && !id ? <Inversionistas /> : '' }
+            { section && section === 'clientes' && !id ? <Clientes /> : '' }
+            { section && section === 'prestamos' && !id ? <Prestamos /> : '' }
+            { section && section === 'inversionistas' && id ? <Inversionista /> : '' }
+            { section && section === 'clientes' && id ? <Cliente /> : '' }
+            { section && section === 'prestamos' && id ? <Prestamo /> : '' }
           </Sidebar.Pusher>
         </Sidebar.Pushable>
       </div>

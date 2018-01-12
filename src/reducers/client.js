@@ -26,6 +26,9 @@ const initialState = {
     isActive: true,
     roleId: 0,
     lastUpdate: '',
+    bank: '',
+    clientAccount: '',
+    iban: '',
   },
 };
 

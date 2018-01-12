@@ -13,6 +13,7 @@ import {
   SAVE_INVESTOR_PROFILE_INIT,
   GET_CLIENT_ZIPCODE_INIT,
   GET_CLIENT_INFO_INIT,
+  GET_LOAN_DATA_INIT,
 } from '../constants';
 import { logout } from '../actions/Login';
 
@@ -27,6 +28,7 @@ export const checkSessionStatusMiddleware = store => next => action => {
     'SAVE_INVESTOR_PROFILE_INIT',
     'GET_CLIENT_ZIPCODE_INIT',
     'GET_CLIENT_INFO_INIT',
+    'GET_LOAN_DATA_INIT',
   ];
   const checkSession = includes(checkSessionInActions, action.type);
   if (checkSession) {

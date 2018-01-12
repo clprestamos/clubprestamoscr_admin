@@ -25,6 +25,7 @@ const initialState = {
       stateName: '',
       investorId: null,
       percentage: null,
+      iban: '',
     },
   ],
   loan: {

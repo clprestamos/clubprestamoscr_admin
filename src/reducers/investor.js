@@ -10,9 +10,12 @@ const initialState = {
     lastName: '',
     identification: 0,
     cellphone: 0,
-    referencePhone: 0,
+    phone: 0,
     isActive: true,
     email: '',
+    bank: '',
+    clientAccount: '',
+    iban: '',
   },
 };
 

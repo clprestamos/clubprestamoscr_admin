@@ -9,4 +9,9 @@
   @media all and (max-width: 600px) {
     width: auto;
   }
+  .loan-list {
+    .content {
+      padding: 0;
+    }
+  }
 }

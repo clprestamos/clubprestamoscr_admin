@@ -1,21 +1,21 @@
 /* eslint-disable jsx-a11y/label-has-for */
 import React, { Component } from 'react';
 import autobind from 'react-autobind';
-import moment from 'moment';
 import _ from 'lodash';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { push } from 'react-router-redux';
 import { bindActionCreators } from 'redux';
-import { Image, List, Header, Icon, Form, Message, Dropdown } from 'semantic-ui-react';
+import { Image, List, Header, Icon, Form, Message, Dropdown, Card } from 'semantic-ui-react';
 
 import * as utils from '../utils';
 import * as MainActionCreators from '../actions/';
 import * as Client from '../actions/Client';
-// import * as MyLoans from '../actions/MyLoans';
+import * as LoansByClient from '../actions/LoansByClient';
 import * as Locales from '../actions/Locales';
 
 import SaveModal from '../components/SaveModal';
+import LoanList from '../components/LoanList';
 
 class Cliente extends Component {
   constructor(props) {
@@ -24,7 +24,7 @@ class Cliente extends Component {
     this.boundActionCreators = bindActionCreators({
       MainActionCreators,
       Client,
-      // MyLoans,
+      LoansByClient,
       Locales,
     }, dispatch);
     this.state = {
@@ -38,10 +38,9 @@ class Cliente extends Component {
       cellphone: false,
       referencePhone: false,
       relativePhone: false,
-      // province: false,
-      // canton: false,
-      // district: false,
-      // zipCode: false,
+      bank: false,
+      clientAccount: false,
+      iban: false,
       readOnly: true,
       isSaveModalOpen: false,
     };
@@ -49,8 +48,8 @@ class Cliente extends Component {
   }
   componentDidMount() {
     const { dispatch, match } = this.props;
-    dispatch(Client.getClientInfo(match.params.userId));
-    // dispatch(MyLoans.getMyLoans(match.params.userId));
+    dispatch(Client.getClientInfo(match.params.id));
+    dispatch(LoansByClient.getLoansByClient(match.params.id));
     dispatch(Locales.getProvinces());
   }
   componentWillReceiveProps(nextProps) {
@@ -139,7 +138,7 @@ class Cliente extends Component {
   saveChanges() {
     this.handleModalOpen();
     const { dispatch, match } = this.props;
-    dispatch(Client.saveClientInfo(match.params.userId));
+    dispatch(Client.saveClientInfo(match.params.id));
   }
   render() {
     const { data } = this.props.client;
@@ -163,13 +162,7 @@ class Cliente extends Component {
                 <List.Item>
                   <List.Content>
                     <List.Header>Fecha de ingreso</List.Header>
-                    <List.Description>{moment(new Date(data.signupDate)).format('DD-MM-YYYY')}</List.Description>
-                  </List.Content>
-                </List.Item>
-                <List.Item>
-                  <List.Content>
-                    <List.Header>Préstamos</List.Header>
-                    <List.Description>{0}</List.Description>
+                    <List.Description>{utils.parseDate(data.signupDate)}</List.Description>
                   </List.Content>
                 </List.Item>
                 <List.Item>
@@ -202,7 +195,7 @@ class Cliente extends Component {
             <Form.Group>
               <Form.Field className="signup-date">
                 <label>Fecha de ingreso:</label>
-                <input name="signupDate" type="date" readOnly={this.state.readOnly} onChange={this.onChangeField} value={moment(new Date(data.signupDate)).format('YYYY-MM-DD')} required />
+                <input name="signupDate" type="date" readOnly={this.state.readOnly} onChange={this.onChangeField} value={utils.parseDate(data.signupDate)} required />
               </Form.Field>
               <Form.Field className="province">
                 <label>Provincia:</label>
@@ -255,6 +248,11 @@ class Cliente extends Component {
                 />
               </Form.Field>
               <Form.Input width={6} readOnly label="Código Postal:" onChange={this.onChangeField} name="zipCode" type="text" value={data.zipCode} />
+              <Form.Input width={6} readOnly={this.state.readOnly} label="Banco:" onChange={this.onChangeField} name="bank" type="text" value={!data.bank ? '' : data.bank} required error={this.state.bank} />
+            </Form.Group>
+            <Form.Group>
+              <Form.Input width={6} readOnly={this.state.readOnly} label="Cuenta cliente:" onChange={this.onChangeField} name="clientAccount" type="text" value={!data.clientAccount ? '' : data.clientAccount} required error={this.state.clientAccount} />
+              <Form.Input width={6} readOnly={this.state.readOnly} label="IBAN:" onChange={this.onChangeField} name="iban" type="text" value={!data.iban ? '' : data.iban} required error={this.state.iban} />
             </Form.Group>
             <Message
               success
@@ -273,6 +271,16 @@ class Cliente extends Component {
           </Form>
         </div>
         <SaveModal isOpen={this.state.isSaveModalOpen} handleCancel={this.handleModalOpen} handleSave={this.saveChanges} />
+        <Card>
+          <Card.Content>
+            <Card.Header>
+              Detalle del Préstamo
+            </Card.Header>
+          </Card.Content>
+          <Card.Content>
+            <LoanList loanList={this.props.loansByClient.data} />
+          </Card.Content>
+        </Card>
       </div>
     );
   }
@@ -284,6 +292,7 @@ const mapStateToProps = state => ({
   provinces: state.locales.provinces,
   cantons: state.locales.cantons,
   districts: state.locales.districts,
+  loansByClient: state.loansByClient,
 });
 
 export default withRouter(connect(mapStateToProps)(Cliente));

@@ -1,3 +1,4 @@
+import reverse from 'lodash/reverse';
 import * as types from '../constants';
 import * as service from '../service';
 
@@ -46,7 +47,7 @@ export function getAllClients() {
         endpoint: '/clients',
       })
         .then((response) => {
-          dispatch(getAllClientsSuccess(response.body.results));
+          dispatch(getAllClientsSuccess(reverse(response.body.results)));
         })
         .catch(error => dispatch(getAllClientsError(error)));
     } catch (error) {
