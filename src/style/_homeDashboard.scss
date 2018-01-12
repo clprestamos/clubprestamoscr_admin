@@ -1,4 +1,4 @@
-.home {
+.dashboard {
   padding: 8vh 4vw;
   @media all and (max-width: 800px) {
     padding-top: 4vh;
@@ -9,48 +9,87 @@
   @media all and (max-width: 600px) {
     width: auto;
   }
+  p {
+    color: $menu-item;
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
   section {
     display: flex;
     justify-content: space-between;
   }
-  .ui.cards>.card {
-    margin-top: 1rem;
-    width: 48%;
-    @media all and (max-width: 1024px) {
-      width: 47.8%;
-    }
-    @media all and (max-width: 800px) {
-      width: 100%;
-    }
-    .ui.green.label {
-      float: right;
-    }
-    @extend .box;
-    > .content {
-      border: none;
-      font-size: 14px;
-      font-weight: 300;
-      line-height: 1.5;
-      text-align: left;
-      color: $dark;
-      padding: 30px 40px;
-      min-height: 200px;
-      .header {
-        font-size: 20px;
-        font-weight: bold;
-        width: 100%;
+  .ui.cards {
+    flex-direction: row;
+    flex-flow: nowrap;
+    &>.card {
+      margin-top: 1rem;
+      width: 33%;
+      @extend .box;
+      > .content {
+        border: none;
+        font-size: 14px;
+        font-weight: 300;
+        line-height: 1.5;
+        text-align: left;
+        color: $dark;
+        padding-top: 0;
+        padding-bottom: 0;
+        &:first-child {
+          height: 72px;
+          align-items: center;
+          display: flex;
+          min-height: inherit;
+        }
+        &.bottom {
+          padding-top: 1rem;
+          padding-bottom: 1rem;
+          padding-left: 2vw;
+          a {
+            color: $dark-gray;
+            font-size: 0.875rem;
+            font-weight: bold;
+          }
+        }
+        .header {
+          color: $dark-gray;
+          font-size: 1.5rem;
+          width: 100%;
+          a {
+            color: $menu-item;
+            float: right;
+          }
+        }
+        .btn {
+          margin-top: 5vh;
+        }
+        .ui.table {
+          border: none;
+          tr {
+            td {
+              border-top: 1px solid rgba(34,36,38,.1);
+              font-size: 0.875rem;
+              font-weight: 500;
+              text-align: right;
+              a {
+                color: $menu-item;
+              }
+              &:first-child {
+                color: $dark-gray;
+                font-weight: bold;
+                text-align: left;
+              }
+              &:last-child {
+                font-size: 1rem;
+              }
+            }
+            &:last-child {
+              td {
+                border-bottom: 3px solid rgba(34,36,38,.1);
+              }
+            }
+          }
+        }
       }
-      .btn {
-        margin-top: 5vh;
-      }
     }
-  }
-  .ui.cards>.card > .content:first-child {
-    border-radius: 4px;
-    box-shadow: 0 5px 9px 0 rgba(0,0,0,.06);
-    height: 72px;
-    align-items: center;
-    display: flex;
-    min-height: inherit;
   }
 }

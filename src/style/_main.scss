@@ -12,6 +12,13 @@ body {
 
 h1, h2 {
   color: #FFF;
+  font-family: 'Hind', sans-serif;
+}
+
+h1 {
+  color: $dark;
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
 a, a:focus, a:hover, a:visited {
@@ -29,6 +36,44 @@ button {
   cursor: pointer;
   outline: none;
 }
+
+.content {
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.03);
+  padding: 5vh 3vw;
+}
+
+.ui.table {
+  border: none;
+  th {
+    font-size: 14px;
+    font-weight: 300;
+    color: $dark-gray;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+  }
+  td {
+    color: $dark;
+    font-size: 14px;
+    font-weight: 500;
+    > span {
+      font-weight: bold;
+    }
+    a {
+      color: $menu-item;
+    }
+  }
+  &.selectable tbody tr:hover {
+    td {
+      > span {
+        font-size: 16px;
+        color: $dark-green;
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
 .ui.form {
   .ui.message {
     position: relative;
@@ -124,11 +169,11 @@ a.btn {
   &.save, &.save:focus, &.save:hover {
     font-size: 14px;
     font-weight: bold;
-    color: $yard-green;
+    color: white;
     width: 178px;
     height: 42px;
     border-radius: 73px;
-    background-image: linear-gradient(to right, rgba(0, 104, 56, 0.12), rgba(139, 197, 63, 0.12));
+    background-image: linear-gradient(to right, $dark-green, rgba(139, 197, 63, 0.97));
     text-transform: uppercase;
   }
   &.default {

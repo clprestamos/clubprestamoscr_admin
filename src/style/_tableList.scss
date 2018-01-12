@@ -1,0 +1,20 @@
+.table-list {
+  .ui.sortable.table {
+    font-family: Hind;
+    thead {
+      th, th.sorted {
+        border: none;
+        border-bottom: 1px solid $thead-border-bottom;
+        font-size: 14px;
+        font-weight: 300;
+        color: $dark-gray;
+        text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+      }
+    }
+    tbody {
+      td {
+        border-bottom: 1px solid $thead-border-bottom;
+      }
+    }
+  }
+}

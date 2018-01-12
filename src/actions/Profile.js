@@ -4,7 +4,7 @@ import * as service from '../service';
 
 export function getZipCodeInit() {
   return {
-    type: types.GET_PROFILE_ZIPCODE_INIT,
+    type: types.GET_CLIENT_ZIPCODE_INIT,
     payload: {
       isLoading: true,
       error: null,
@@ -13,7 +13,7 @@ export function getZipCodeInit() {
 }
 export function getZipCodeError(error) {
   return {
-    type: types.GET_PROFILE_ZIPCODE_ERROR,
+    type: types.GET_CLIENT_ZIPCODE_ERROR,
     payload: {
       isLoading: false,
       error,
@@ -22,7 +22,7 @@ export function getZipCodeError(error) {
 }
 export function getZipCodeSuccess(zipCode) {
   return {
-    type: types.GET_PROFILE_ZIPCODE_SUCCESS,
+    type: types.GET_CLIENT_ZIPCODE_SUCCESS,
     payload: {
       isLoading: false,
       zipCode,

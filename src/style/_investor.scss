@@ -1,4 +1,4 @@
-.loan {
+.investor {
   padding: 8vh 4vw;
   @media all and (max-width: 800px) {
     padding-top: 4vh;
@@ -35,26 +35,12 @@
       }
     }
   }
+  .loan-list > .content {
+    padding: 0;
+  }
   .ui.form {
-    margin-top: 2rem;
     .field {
       margin-bottom: 2rem;
-      width: 37.5%;
-      &.signup-date, &.province, &.canton, &.district {
-        width: 33%;
-      }
-      input[type="date"] {
-        width: 100%;
-      }
-      .ui.input.labeled {
-        width: 50%;
-      }
-      .ui.basic.label {
-        border: none;
-        padding-left: 0;
-        padding-bottom: 0;
-        padding-top: 1rem;
-      }
     }
     label {
       font-size: 14px;
@@ -75,7 +61,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    .loan-info {
+    .user-info {
       display: flex;
       flex-direction: column;
       align-items: center;

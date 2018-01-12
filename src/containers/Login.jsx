@@ -123,7 +123,7 @@ class LoginComponent extends Component {
     return (
       <div className="login">
         <Container fluid>
-          <Link to="/"><Logo /></Link>
+          <Link to="/dashboard"><Logo /></Link>
           <div className="login-box">
             <div className="box">
               <div className="divider" />

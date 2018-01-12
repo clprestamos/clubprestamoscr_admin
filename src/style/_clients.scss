@@ -1,4 +1,4 @@
-.loans {
+.clients {
   padding: 8vh 4vw;
   @media all and (max-width: 800px) {
     padding-top: 4vh;
@@ -8,10 +8,5 @@
   }
   @media all and (max-width: 600px) {
     width: auto;
-  }
-  .loan-list {
-    .content {
-      padding: 0;
-    }
   }
 }
