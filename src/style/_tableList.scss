@@ -1,4 +1,9 @@
 .table-list {
+  &.client-list {
+    .content {
+      padding: 0;
+    }
+  }
   .ui.sortable.table {
     font-family: Hind;
     thead {

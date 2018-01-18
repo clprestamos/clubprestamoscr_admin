@@ -44,6 +44,25 @@ button {
   padding: 5vh 3vw;
 }
 
+.ui.message {
+  .content {
+    background-color: inherit;
+    .header {
+      font-size: 1rem;
+    }
+  }
+}
+
+.ui.error {
+  .content {
+    padding: 0;
+  }
+}
+
+.ui.image {
+  cursor: pointer;
+}
+
 .ui.table {
   border: none;
   th {

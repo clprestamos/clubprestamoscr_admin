@@ -113,7 +113,7 @@ class LoginComponent extends Component {
       <Message
         negative
         header="Error de autenticación"
-        content="Verifique correo o contraseña."
+        content={!this.props.authData.error ? 'Verifique correo o contraseña.' : this.props.authData.error}
         size="mini"
       />
     ) : '';

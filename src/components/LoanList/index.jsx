@@ -95,7 +95,7 @@ class LoanList extends Component {
                 <Table.HeaderCell sorted={column === 'score' ? direction : null} onClick={() => this.handleSort('score')}>
                   Score
                 </Table.HeaderCell>
-                <Table.HeaderCell sorted={column === 'investorPercentage' ? direction : null} onClick={() => this.handleSort('investorPercentage')}>
+                <Table.HeaderCell sorted={column === 'investPercentage' ? direction : null} onClick={() => this.handleSort('investPercentage')}>
                   Inversión %
                 </Table.HeaderCell>
                 <Table.HeaderCell>
@@ -116,22 +116,29 @@ class LoanList extends Component {
                 requestLoanDate,
                 interest,
                 score,
+                investPercentage,
                 investorPercentage,
-              }) => (
-                <Table.Row key={loanId + 1}>
-                  <Table.Cell>{loanId}</Table.Cell>
-                  <Table.Cell>{`${utils.amountToMoney(amount)}`}</Table.Cell>
-                  <Table.Cell>{term}</Table.Cell>
-                  <Table.Cell>{reason}</Table.Cell>
-                  <Table.Cell>{stateName}</Table.Cell>
-                  <Table.Cell>{utils.parseDate(requestLoanDate)}</Table.Cell>
-                  <Table.Cell>{!interest ? 'No ingresado' : `${interest}%`}</Table.Cell>
-                  <Table.Cell>{!score ? 'No ingresado' : score}</Table.Cell>
-                  <Table.Cell>{!investorPercentage ? 0 : investorPercentage}%</Table.Cell>
-                  <Table.Cell>{utils.amountToMoney((amount * investorPercentage) / 100)}</Table.Cell>
-                  <Table.Cell><Link to={`/dashboard/prestamos/${loanId}`} onClick={() => this.handleLink(`/dashboard/prestamos/${loanId}`)}><Icon name="eye" /></Link></Table.Cell>
-                </Table.Row>
-              ))}
+                percentages,
+              }) => {
+                let investPtg = !investorPercentage ? investPercentage : investorPercentage;
+                const percentageSum = _.sum(percentages);
+                investPtg = !percentageSum ? investPtg : percentageSum;
+                return (
+                  <Table.Row key={loanId + 1}>
+                    <Table.Cell>{loanId}</Table.Cell>
+                    <Table.Cell>{`${utils.amountToMoney(amount)}`}</Table.Cell>
+                    <Table.Cell>{term}</Table.Cell>
+                    <Table.Cell>{reason}</Table.Cell>
+                    <Table.Cell>{stateName}</Table.Cell>
+                    <Table.Cell>{utils.parseDate(requestLoanDate)}</Table.Cell>
+                    <Table.Cell>{!interest ? 'No ingresado' : `${interest}%`}</Table.Cell>
+                    <Table.Cell>{!score ? 'No ingresado' : score}</Table.Cell>
+                    <Table.Cell>{!investPtg ? 0 : investPtg}%</Table.Cell>
+                    <Table.Cell>{utils.amountToMoney((amount * investPtg) / 100)}</Table.Cell>
+                    <Table.Cell><Link to={`/dashboard/prestamos/${loanId}`} onClick={() => this.handleLink(`/dashboard/prestamos/${loanId}`)}><Icon name="eye" /></Link></Table.Cell>
+                  </Table.Row>
+                );
+              })}
             </Table.Body>
           </Table>
         </div>

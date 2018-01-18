@@ -58,16 +58,20 @@ export function login({ username, password }) {
           userId,
           avatar,
         } = userInfo;
-        const data = {
-          name,
-          lastName,
-          email,
-          roleId,
-          userId,
-          avatar,
-        };
-        service.setToken(token, data);
-        dispatch(loginSuccess(data));
+        if (roleId === 1) {
+          const data = {
+            name,
+            lastName,
+            email,
+            roleId,
+            userId,
+            avatar,
+          };
+          service.setToken(token, data);
+          dispatch(loginSuccess(data));
+        } else {
+          dispatch(loginError({ message: 'No está autorizado.' }));
+        }
       })
       .catch((error) => {
         dispatch(loginError(error));

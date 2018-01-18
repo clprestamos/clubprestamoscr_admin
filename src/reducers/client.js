@@ -6,6 +6,7 @@ const initialState = {
   saveSuccess: false,
   data: {
     userId: 0,
+    avatar: '',
     name: '',
     lastName: '',
     identification: '',
@@ -42,6 +43,8 @@ function client(state = initialState, action) {
     case types.SAVE_CLIENT_PROFILE_SUCCESS:
     case types.GET_CLIENT_ZIPCODE_INIT:
     case types.GET_CLIENT_ZIPCODE_ERROR:
+    case types.UPLOAD_FILE_INIT:
+    case types.UPLOAD_FILE_ERROR:
       return {
         ...state,
         ...action.payload,
@@ -53,6 +56,15 @@ function client(state = initialState, action) {
         data: {
           ...state.data,
           [action.payload.field]: action.payload.value,
+        },
+      };
+    case types.UPLOAD_FILE_SUCCESS:
+      return {
+        ...state,
+        isLoading: action.payload.isLoading,
+        data: {
+          ...state.data,
+          avatar: action.payload.avatar,
         },
       };
     case types.CLEAR_CLIENT_INFO:

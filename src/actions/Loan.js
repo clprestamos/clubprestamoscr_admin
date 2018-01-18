@@ -86,7 +86,7 @@ export function saveLoan(loanId) {
     try {
       let payload = _.chain(getState().loan.data)
         .pickBy(_.identity)
-        .omit(['name', 'lastName', 'identification', 'stateName', 'investorId', 'percentage', 'loanId', 'bank', 'clientAccount', 'iban'])
+        .omit(['name', 'lastName', 'identification', 'stateName', 'investorId', 'percentage', 'loanId', 'bank', 'clientAccount', 'iban', 'investPercentage'])
         .value();
       if (getState().loan.data.stateId === 3) {
         payload = {

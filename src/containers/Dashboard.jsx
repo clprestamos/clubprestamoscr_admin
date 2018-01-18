@@ -8,7 +8,6 @@ import { bindActionCreators } from 'redux';
 import { Card } from 'semantic-ui-react';
 
 import * as MainActionCreators from '../actions/';
-import * as Users from '../actions/Users';
 
 import CardComponent from '../components/Dashboard/Card';
 
@@ -18,17 +17,12 @@ class Dashboard extends Component {
     const { dispatch } = props;
     this.boundActionCreators = bindActionCreators({
       MainActionCreators,
-      Users,
     }, dispatch);
     autobind(this);
   }
   componentWillMount() {
     const { dispatch } = this.props;
     dispatch(push('/dashboard'));
-  }
-  componentDidMount() {
-    const { dispatch } = this.props;
-    dispatch(Users.getAllUsers());
   }
   handleLink(link) {
     const { dispatch } = this.props;

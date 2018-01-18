@@ -8,9 +8,13 @@ import {
   Link,
   withRouter,
 } from 'react-router-dom';
+import { bindActionCreators } from 'redux';
+
+import * as UsersActions from '../actions/Users';
 
 import Logo from '../components/Header/Logo';
 import Modal from '../components/Modal';
+import Search from '../components/Search';
 import ForgotPassword from './ForgotPassword';
 import Dashboard from './Dashboard';
 import Inversionistas from './Inversionistas';
@@ -19,6 +23,8 @@ import Prestamos from './Prestamos';
 import Inversionista from './Inversionista';
 import Cliente from './Cliente';
 import Prestamo from './Prestamo';
+import User from './User';
+import Users from './Users';
 
 class Main extends Component {
   constructor(props) {
@@ -27,7 +33,15 @@ class Main extends Component {
       activeItem: props.routing.location.pathname,
       isModalOpen: false,
     };
+    const { dispatch } = props;
+    this.boundActionCreators = bindActionCreators({
+      UsersActions,
+    }, dispatch);
     autobind(this);
+  }
+  componentDidMount() {
+    const { dispatch } = this.props;
+    dispatch(UsersActions.getAllUsers());
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.routing.location.pathname !== this.state.activeItem) {
@@ -67,6 +81,11 @@ class Main extends Component {
         text: 'Préstamos',
         url: '/dashboard/prestamos',
       },
+      {
+        name: 'usuarios',
+        text: 'Usuarios',
+        url: '/dashboard/usuarios',
+      },
     ];
     const trigger = (
       <span>
@@ -95,6 +114,9 @@ class Main extends Component {
         <Menu stackable>
           <Menu.Item position="left" name="home" className="item-logo">
             <Logo />
+          </Menu.Item>
+          <Menu.Item position="left">
+            <Search source={this.props.source} />
           </Menu.Item>
           <Menu.Menu position="right">
             <Menu.Item position="right">
@@ -163,9 +185,11 @@ class Main extends Component {
             { section && section === 'inversionistas' && !id ? <Inversionistas /> : '' }
             { section && section === 'clientes' && !id ? <Clientes /> : '' }
             { section && section === 'prestamos' && !id ? <Prestamos /> : '' }
+            { section && section === 'usuarios' && !id ? <Users /> : '' }
             { section && section === 'inversionistas' && id ? <Inversionista /> : '' }
             { section && section === 'clientes' && id ? <Cliente /> : '' }
             { section && section === 'prestamos' && id ? <Prestamo /> : '' }
+            { section && section === 'usuarios' && id ? <User /> : '' }
           </Sidebar.Pusher>
         </Sidebar.Pushable>
       </div>
@@ -176,6 +200,7 @@ class Main extends Component {
 const mapStateToProps = state => ({
   authData: state.user,
   routing: state.routing,
+  source: state.users.data,
 });
 
 export default withRouter(connect(mapStateToProps)(Main));

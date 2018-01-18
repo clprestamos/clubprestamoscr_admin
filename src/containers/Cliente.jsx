@@ -15,6 +15,7 @@ import * as LoansByClient from '../actions/LoansByClient';
 import * as Locales from '../actions/Locales';
 
 import SaveModal from '../components/SaveModal';
+import ChangeAvatarModal from '../components/ChangeAvatarModal';
 import LoanList from '../components/LoanList';
 
 class Cliente extends Component {
@@ -29,6 +30,9 @@ class Cliente extends Component {
     }, dispatch);
     this.state = {
       hasErrors: false,
+      readOnly: true,
+      isSaveModalOpen: false,
+      isChangeAvatarModalOpen: false,
       name: false,
       lastName: false,
       email: false,
@@ -41,8 +45,6 @@ class Cliente extends Component {
       bank: false,
       clientAccount: false,
       iban: false,
-      readOnly: true,
-      isSaveModalOpen: false,
     };
     autobind(this);
   }
@@ -96,7 +98,7 @@ class Cliente extends Component {
   }
   onSubmitForm() {
     if (!this.state.hasErrors && !this.state.readOnly) {
-      this.handleModalOpen();
+      this.handleSaveModalOpen();
     }
   }
   onChangeProvinces(province) {
@@ -129,14 +131,19 @@ class Cliente extends Component {
     const { dispatch } = this.props;
     dispatch(push(link));
   }
-  handleModalOpen() {
+  handleSaveModalOpen() {
     this.setState({
       isSaveModalOpen: !this.state.isSaveModalOpen,
       readOnly: true,
     });
   }
+  handleChangeAvatarModalOpen() {
+    this.setState({
+      isChangeAvatarModalOpen: !this.state.isChangeAvatarModalOpen,
+    });
+  }
   saveChanges() {
-    this.handleModalOpen();
+    this.handleSaveModalOpen();
     const { dispatch, match } = this.props;
     dispatch(Client.saveClientInfo(match.params.id));
   }
@@ -153,7 +160,7 @@ class Cliente extends Component {
             <div className="user-info">
               <List horizontal>
                 <List.Item>
-                  <Image circular src={data.avatar ? data.avatar : 'https://react.semantic-ui.com/assets/images/wireframe/square-image.png'} size="tiny" />
+                  <Image circular src={data.avatar ? data.avatar : 'https://react.semantic-ui.com/assets/images/wireframe/square-image.png'} size="tiny" onClick={this.handleChangeAvatarModalOpen} />
                   <List.Content>
                     <List.Header>{`${data.name} ${data.lastName}`}</List.Header>
                     <List.Description>{data.identification}</List.Description>
@@ -270,7 +277,8 @@ class Cliente extends Component {
             </Form.Field>
           </Form>
         </div>
-        <SaveModal isOpen={this.state.isSaveModalOpen} handleCancel={this.handleModalOpen} handleSave={this.saveChanges} />
+        <SaveModal isOpen={this.state.isSaveModalOpen} handleCancel={this.handleSaveModalOpen} handleSave={this.saveChanges} />
+        <ChangeAvatarModal isOpen={this.state.isChangeAvatarModalOpen} handleCancel={this.handleChangeAvatarModalOpen} userId={data.userId} />
         <Card>
           <Card.Content>
             <Card.Header>
