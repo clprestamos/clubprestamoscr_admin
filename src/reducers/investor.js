@@ -5,7 +5,8 @@ const initialState = {
   error: null,
   saveSuccess: false,
   data: {
-    id: 0,
+    user_id: 0,
+    avatar: '',
     name: '',
     lastName: '',
     identification: 0,
@@ -27,6 +28,8 @@ function investor(state = initialState, action) {
     case types.SAVE_INVESTOR_PROFILE_INIT:
     case types.SAVE_INVESTOR_PROFILE_ERROR:
     case types.SAVE_INVESTOR_PROFILE_SUCCESS:
+    case types.UPLOAD_FILE_INIT:
+    case types.UPLOAD_FILE_ERROR:
       return {
         ...state,
         ...action.payload,
@@ -37,6 +40,15 @@ function investor(state = initialState, action) {
         data: {
           ...state.data,
           [action.payload.field]: action.payload.value,
+        },
+      };
+    case types.UPLOAD_FILE_SUCCESS:
+      return {
+        ...state,
+        isLoading: action.payload.isLoading,
+        data: {
+          ...state.data,
+          avatar: action.payload.avatar,
         },
       };
     case types.CLEAR_INVESTOR_INFO:

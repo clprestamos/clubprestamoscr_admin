@@ -40,6 +40,7 @@ class Prestamo extends Component {
     dispatch(InvestorByLoan.getInvestorByLoan(match.params.id));
   }
   onChangeField(e) {
+    const { dispatch } = this.props;
     const isValid = this.validation({ type: e.target.type, value: e.target.value });
     if (isValid) {
       this.setState({
@@ -53,11 +54,14 @@ class Prestamo extends Component {
       });
     }
     if (e.target.type === 'date') {
-      const { dispatch } = this.props;
-      dispatch(Loan.editLoanData({ field: e.target.name, value: new Date(e.target.value) }));
+      return dispatch(Loan.editLoanData({ field: e.target.name, value: new Date(e.target.value) }));
     }
-    const { dispatch } = this.props;
-    dispatch(Loan.editLoanData({ field: e.target.name, value: e.target.value }));
+    if (e.target.name === 'interest' || e.target.name === 'score') {
+      if (e.target.value === '') {
+        return dispatch(Loan.editLoanData({ field: e.target.name, value: 0 }));
+      }
+    }
+    return dispatch(Loan.editLoanData({ field: e.target.name, value: e.target.value }));
   }
   onDropdownChange({ field, value }) {
     const { dispatch } = this.props;

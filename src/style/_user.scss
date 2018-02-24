@@ -1,4 +1,4 @@
-.client {
+.user {
   padding: 8vh 4vw;
   @media all and (max-width: 800px) {
     padding-top: 4vh;
@@ -8,20 +8,6 @@
   }
   @media all and (max-width: 600px) {
     width: auto;
-  }
-  .score-items {
-    .field {
-      min-width: 31%;
-      &.required {
-        > .ui.radio::after {
-          content: '';
-        }
-      }
-    }
-    .ui.radio {
-      margin-left: 5%;
-      margin-right: 5%;
-    }
   }
   .ui.card {
     width: 100vw;
