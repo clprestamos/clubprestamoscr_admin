@@ -1,6 +1,6 @@
 {
-  "short_name": "Club de Préstamos",
-  "name": "Club de Préstamos Costa Rica",
+  "short_name": "React App",
+  "name": "Create React App Sample",
   "icons": [
     {
       "src": "favicon.ico",
