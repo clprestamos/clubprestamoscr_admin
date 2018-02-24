@@ -6,7 +6,7 @@ import store, { history } from './store';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
-import './style/index.scss';
+import './style/index.css';
 
 const target = document.querySelector('#app');
 
