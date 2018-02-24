@@ -7,12 +7,12 @@ export const rules = [
     regExp: /^[a-z0-9](\.?[a-z0-9_-]){0,}@[a-z0-9-]+\.([a-z]{1,6}\.)?[a-z]{2,6}$/,
   },
   {
-    type: 'tel',
+    type: 'phone',
     regExp: /^([0-9]{4})(-?)([0-9]{4})$/, // ####-#### ó ######## o 00000000
   },
   {
     type: 'identification',
-    regExp: /^([0-9]{1})(-?)([0-9]{4})(-?)([0-9]{4})$/, // #-0###-0###
+    regExp: /^(1([0-9]{3})-([0-9]{1,})-([0-9]{1,}))|(1([0-9]{3})-RE-([0-9]{1,})-([0-9]{1,}))|(([0-9]{1})-([0-9]{4})-([0-9]{4}))|([0-9]{9})$/, // 1###-#...#-#...# || 1###-RE-#...#-#...#
   },
   {
     type: 'password',
@@ -32,13 +32,72 @@ export const rules = [
   },
   {
     type: 'number',
-    regExp: /^([0-9])$/,
+    regExp: /^[0-9]{,2}$/,
   },
   {
-    type: 'date',
-    regExp: /^([0-9]){4}-([0-9]){2}-([0-9]){2}$/,
+    type: 'paypalRef',
+    regExp: /^([a-zA-Z0-9])*$/,
   },
 ];
+
+export function getSex() {
+  return [
+    { text: 'Hombre', value: 'hombre' },
+    { text: 'Mujer', value: 'mujer' },
+  ];
+}
+
+export function getMaritalStatus() {
+  return [
+    { text: 'Soltero', value: 'soltero' },
+    { text: 'Casado', value: 'casado' },
+    { text: 'Unión libre', value: 'union-libre' },
+    { text: 'Divorciado', value: 'divorciado' },
+    { text: 'Viudo', value: 'viudo' },
+  ];
+}
+
+export function getHome() {
+  return [
+    { text: 'Propia', value: 'propia' },
+    { text: 'Alquilada', value: 'alquilada' },
+    { text: 'Prestada', value: 'prestada' },
+  ];
+}
+
+export function getJobSector() {
+  return [
+    { text: 'Público', value: 'publico' },
+    { text: 'Privado', value: 'privado' },
+  ];
+}
+
+export function getJobCategory() {
+  return [
+    { text: 'Propiedad', value: 'propiedad' },
+    { text: 'Interino', value: 'interino' },
+    { text: 'Propio', value: 'propio' },
+    { text: 'Desempleado', value: 'desempleado' },
+    { text: 'Pensionado', value: 'pensionado' },
+  ];
+}
+
+export function getAcademicLevel() {
+  return [
+    { text: 'Primaria', value: 'primaria' },
+    { text: 'Secundaria completa', value: 'secundaria-completa' },
+    { text: 'Universitaria completa', value: 'universitaria-completa' },
+  ];
+}
+
+export function getJobTime() {
+  return [
+    { text: 'Menos de un año', value: 'menos-de-un-ano' },
+    { text: '1 a 5 años', value: '1-5' },
+    { text: '5 - 10 años', value: '5-10' },
+    { text: '10 años o más', value: '10-mas' },
+  ];
+}
 
 export function getTerms() {
   return [
@@ -146,9 +205,29 @@ export function getDropDownItems(itemsArray) {
 // Currencies: https://www.currency-iso.org/dam/downloads/lists/list_one.xml
 
 export function amountToMoney(amount) {
-  return _.toInteger(amount).toLocaleString('CRC', { style: 'currency', currency: 'CRC' }).replace('CRC', '₡');
+  return _.toNumber(amount).toLocaleString('CRC', { style: 'currency', currency: 'CRC' }).replace('CRC', '₡');
 }
 
 export function parseDate(date) {
   return moment.utc(new Date(date)).format('YYYY-MM-DD');
+}
+
+export function getPmt({
+  ir = 0, // interest per month
+  np, // number of periods (months)
+  pv, // present value (amount)
+  fv = 0, // future value
+  type = 0, // 0: end of the period, 1: beginning of period
+}) {
+  if (ir === 0) return -(pv + fv) / np;
+  const pvif = Math.pow(1 + ir, np); // eslint-disable-line
+  let pmt = -((ir * (pv * (pvif + fv))) / (pvif - 1));
+  if (type === 1) {
+    pmt /= (1 + ir);
+  }
+  return Math.abs(pmt.toFixed(2));
+}
+
+export function getLastPaymentDate({ approvedDate, months }) {
+  return moment(approvedDate).add(months, 'months').format('DD-MM-YYYY');
 }

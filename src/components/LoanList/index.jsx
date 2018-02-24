@@ -134,7 +134,7 @@ class LoanList extends Component {
                     <Table.Cell>{!interest ? 'No ingresado' : `${interest}%`}</Table.Cell>
                     <Table.Cell>{!score ? 'No ingresado' : score}</Table.Cell>
                     <Table.Cell>{!investPtg ? 0 : investPtg}%</Table.Cell>
-                    <Table.Cell>{utils.amountToMoney((amount * investPtg) / 100)}</Table.Cell>
+                    <Table.Cell>{!investPtg ? 0 : utils.amountToMoney((amount * investPtg) / 100)}</Table.Cell>
                     <Table.Cell><Link to={`/dashboard/prestamos/${loanId}`} onClick={() => this.handleLink(`/dashboard/prestamos/${loanId}`)}><Icon name="eye" /></Link></Table.Cell>
                   </Table.Row>
                 );

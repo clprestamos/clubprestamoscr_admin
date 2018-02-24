@@ -15,7 +15,6 @@ const initialState = {
     score: 0,
     approvedDate: '',
     stateName: '',
-    company: '',
     name: '',
     lastName: '',
     identification: '',

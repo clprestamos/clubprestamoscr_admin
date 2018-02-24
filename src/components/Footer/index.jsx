@@ -13,14 +13,14 @@ const Footer = (props) => {
       <div className="right-content">
         <ul>
           <li>Síganos</li>
-          <li>
+          {/* <li>
             <a href="http://twiiter.com" rel="noopener noreferrer" target="_blank">
               <Icon.Group>
                 <Icon inverted size="big" name="circle" />
                 <Icon name="twitter" />
               </Icon.Group>
             </a>
-          </li>
+          </li> */}
           <li>
             <a href="http://facebook.com" rel="noopener noreferrer" target="_blank">
               <Icon.Group>

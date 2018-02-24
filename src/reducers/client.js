@@ -2,7 +2,7 @@ import * as types from '../constants';
 
 const initialState = {
   isLoading: false,
-  error: null,
+  error: '',
   saveSuccess: false,
   data: {
     userId: 0,
@@ -30,6 +30,15 @@ const initialState = {
     bank: '',
     clientAccount: '',
     iban: '',
+    sex: '',
+    maritalStatus: '',
+    home: '',
+    otherProperties: true,
+    jobSector: '',
+    jobCategory: '',
+    academicLevel: '',
+    hasVehicle: true,
+    jobTime: '',
   },
 };
 
