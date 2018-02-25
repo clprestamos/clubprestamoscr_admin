@@ -58,7 +58,7 @@ export function login({ username, password }) {
           userId,
           avatar,
         } = userInfo;
-        if (roleId === 1) {
+        if (roleId === 3) { // 3 Admin user
           const data = {
             name,
             lastName,
