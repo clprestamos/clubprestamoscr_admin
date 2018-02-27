@@ -22,7 +22,7 @@ class InvestorList extends Component {
         identification: '',
         cellphone: 0,
         signupDate: '',
-        loans: 0,
+        invests: 0,
       }],
       direction: null,
     };
@@ -81,7 +81,7 @@ class InvestorList extends Component {
               <Table.HeaderCell sorted={column === 'signupDate' ? direction : null} onClick={() => this.handleSort('requestLoanDate')}>
                 Ingreso
               </Table.HeaderCell>
-              <Table.HeaderCell sorted={column === 'loans' ? direction : null} onClick={() => this.handleSort('loans')}>
+              <Table.HeaderCell sorted={column === 'invests' ? direction : null} onClick={() => this.handleSort('invests')}>
                 Préstamos
               </Table.HeaderCell>
               <Table.HeaderCell>
@@ -98,8 +98,8 @@ class InvestorList extends Component {
               identification,
               cellphone,
               signupDate,
+              invests,
             }) => {
-              const loans = _.filter(this.props.loansByInvestor, { investorId: userId });
               return (
                 <Table.Row key={userId + 1}>
                   <Table.Cell>{userId}</Table.Cell>
@@ -110,7 +110,7 @@ class InvestorList extends Component {
                   <Table.Cell>{identification}</Table.Cell>
                   <Table.Cell>{cellphone}</Table.Cell>
                   <Table.Cell>{utils.parseDate(signupDate)}</Table.Cell>
-                  <Table.Cell>{loans.length}</Table.Cell>
+                  <Table.Cell>{invests}</Table.Cell>
                   <Table.Cell><Link to={`/dashboard/inversionistas/${userId}`} onClick={() => this.handleLink(`/dashboard/inversionistas/${userId}`)}><Icon name="eye" /></Link></Table.Cell>
                 </Table.Row>
               );

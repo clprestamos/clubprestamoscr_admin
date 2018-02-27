@@ -150,8 +150,8 @@ class Inversionista extends Component {
             </Form.Group>
             <Form.Group>
               <Form.Input width={6} readOnly={this.state.readOnly} label="Cédula:" onChange={this.onChangeField} name="identification" type="text" value={data.identification} required error={this.state.identification} />
-              <Form.Input width={6} readOnly={this.state.readOnly} label="Celular:" onChange={this.onChangeField} name="cellphone" type="tel" value={data.cellphone} required error={this.state.cellphone} />
-              <Form.Input width={6} readOnly={this.state.readOnly} label="Teléfono:" onChange={this.onChangeField} name="phone" type="tel" value={data.phone} required error={this.state.phone} />
+              <Form.Input width={6} readOnly={this.state.readOnly} label="Celular:" onChange={this.onChangeField} name="cellphone" type="tel" value={data.cellphone ? data.cellphone : ''} required error={this.state.cellphone} />
+              <Form.Input width={6} readOnly={this.state.readOnly} label="Teléfono:" onChange={this.onChangeField} name="phone" type="tel" value={data.phone ? data.phone : ''} required error={this.state.phone} />
             </Form.Group>
             <Form.Group>
               <Form.Input width={6} readOnly={this.state.readOnly} label="Banco:" onChange={this.onChangeField} name="bank" type="text" value={!data.bank ? '' : data.bank} required error={this.state.bank} />

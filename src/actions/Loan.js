@@ -85,14 +85,18 @@ export function saveLoan(loanId) {
     dispatch(saveLoanInit());
     try {
       let payload = _.chain(getState().loan.data)
-        .omit(['name', 'lastName', 'identification', 'stateName', 'investorId', 'percentage', 'loanId', 'bank', 'clientAccount', 'iban', 'investPercentage', 'company'])
+        .omit(['name', 'lastName', 'identification', 'stateName', 'investorId', 'percentage', 'loanId', 'bank', 'clientAccount', 'iban', 'investPercentage', 'company', 'userId', 'investors', 'percentages'])
+        .pickBy(_.identity)
         .value();
       if (getState().loan.data.stateId === 3) {
         payload = {
           ...payload,
           approvedDate: new Date(),
         };
+      } else {
+        _.omit(payload, ['approvedDate']);
       }
+      payload.lastUpdate = new Date();
       service.patch({
         endpoint: `/loans/${loanId}`,
         payload,
