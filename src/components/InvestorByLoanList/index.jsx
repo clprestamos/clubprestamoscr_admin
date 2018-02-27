@@ -15,7 +15,7 @@ class InvestorByLoanList extends Component {
     this.state = {
       column: null,
       data: [{
-        investorId: 0,
+        userId: 0,
         avatar: '',
         name: '',
         lastName: '',
@@ -63,7 +63,7 @@ class InvestorByLoanList extends Component {
       <Table sortable striped>
         <Table.Header>
           <Table.Row>
-            <Table.HeaderCell sorted={column === 'investorId' ? direction : null} onClick={() => this.handleSort('investorId')}>
+            <Table.HeaderCell sorted={column === 'userId' ? direction : null} onClick={() => this.handleSort('userId')}>
               ID
             </Table.HeaderCell>
             <Table.HeaderCell sorted={column === 'name' ? direction : null} onClick={() => this.handleSort('name')}>
@@ -85,7 +85,7 @@ class InvestorByLoanList extends Component {
         </Table.Header>
         <Table.Body>
           {_.map(data, ({
-            investorId,
+            userId,
             avatar,
             name,
             lastName,
@@ -93,8 +93,8 @@ class InvestorByLoanList extends Component {
             percentage,
             amount,
           }) => (
-            <Table.Row key={investorId + 1}>
-              <Table.Cell>{investorId}</Table.Cell>
+            <Table.Row key={userId + 1}>
+              <Table.Cell>{userId}</Table.Cell>
               <Table.Cell>
                 <Image src={!avatar ? 'https://react.semantic-ui.com/assets/images/wireframe/square-image.png' : avatar} avatar />
                 <span>{name} {lastName}</span>
@@ -102,7 +102,7 @@ class InvestorByLoanList extends Component {
               <Table.Cell>{identification}</Table.Cell>
               <Table.Cell>{percentage}%</Table.Cell>
               <Table.Cell>{utils.amountToMoney((amount * percentage) / 100)}</Table.Cell>
-              <Table.Cell><Link to={`/dashboard/inversionistas/${investorId}`} onClick={() => this.handleLink(`/dashboard/inversionistas/${investorId}`)}><Icon name="eye" /></Link></Table.Cell>
+              <Table.Cell><Link to={`/dashboard/inversionistas/${userId}`} onClick={() => this.handleLink(`/dashboard/inversionistas/${userId}`)}><Icon name="eye" /></Link></Table.Cell>
             </Table.Row>
           ))}
         </Table.Body>
