@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import * as types from '../constants';
 import * as service from '../service';
 
@@ -146,7 +147,8 @@ export function saveUserInfo(userId) {
   return (dispatch, getState) => {
     dispatch(saveUserInfoInit());
     try {
-      const payload = getState().users.user.data;
+      let payload = getState().users.user.data;
+      payload = _.omit(payload, ['userId', 'lastSigninDate', 'lastUpdate', 'roleName']);
       service.patch({
         endpoint: `/users/${userId}`,
         payload,
