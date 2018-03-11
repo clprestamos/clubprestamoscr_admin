@@ -2,7 +2,7 @@ import * as types from '../constants';
 
 const initialState = {
   isLoading: false,
-  error: '',
+  error: false,
   saveSuccess: false,
   data: {
     userId: 0,

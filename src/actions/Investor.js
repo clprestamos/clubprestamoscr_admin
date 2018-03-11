@@ -103,10 +103,16 @@ export function saveInvestorInfo(userId) {
   return (dispatch, getState) => {
     dispatch(saveInvestorInfoInit());
     try {
-      const payload = _.chain(getState().investor.data)
+      const { data } = getState().investor;
+      const { isActive } = data;
+      let payload = _.chain(getState().investor.data)
         .pickBy(_.identity)
         .omit(['userId', 'lastUpdate'])
         .value();
+      payload = {
+        ...payload,
+        isActive,
+      };
       service.patch({
         endpoint: `/users/${userId}`,
         payload,

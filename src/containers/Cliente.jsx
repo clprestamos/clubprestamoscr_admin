@@ -444,7 +444,11 @@ class Cliente extends Component {
           </Form>
         </div>
         <SaveModal isOpen={this.state.isSaveModalOpen} handleCancel={this.handleSaveModalOpen} handleSave={this.saveChanges} />
-        <ChangeAvatarModal isOpen={this.state.isChangeAvatarModalOpen} handleCancel={this.handleChangeAvatarModalOpen} userId={data.userId} />
+        <ChangeAvatarModal
+          isOpen={this.state.isChangeAvatarModalOpen}
+          handleCancel={this.handleChangeAvatarModalOpen}
+          userId={_.toInteger(data.userId)}
+        />
         <Card>
           <Card.Content>
             <Card.Header>

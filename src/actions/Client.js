@@ -148,10 +148,16 @@ export function saveClientInfo(userId) {
   return (dispatch, getState) => {
     dispatch(saveClientInfoInit());
     try {
-      const payload = _.chain(getState().client.data)
+      const { data } = getState().client;
+      const { isActive } = data;
+      let payload = _.chain(getState().client.data)
         .pickBy(_.identity)
         .omit(['userId', 'lastUpdate', 'roleName', 'lastSigninDate'])
         .value();
+      payload = {
+        ...payload,
+        isActive,
+      };
       service.patch({
         endpoint: `/users/${userId}`,
         payload,
