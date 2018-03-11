@@ -150,7 +150,7 @@ export function saveClientInfo(userId) {
     try {
       const payload = _.chain(getState().client.data)
         .pickBy(_.identity)
-        .omit(['userId', 'lastUpdate', 'roleName'])
+        .omit(['userId', 'lastUpdate', 'roleName', 'lastSigninDate'])
         .value();
       service.patch({
         endpoint: `/users/${userId}`,
