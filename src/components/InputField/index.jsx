@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import autobind from 'react-autobind';
 import PropTypes from 'prop-types';
-import { Input, TextArea, Label } from 'semantic-ui-react';
+import { TextArea, Label } from 'semantic-ui-react';
 
 class InputField extends Component {
   constructor(props) {
@@ -31,9 +31,10 @@ class InputField extends Component {
         required={this.props.isRequired}
         disabled={this.props.disabled}
         value={this.props.value ? this.props.value : undefined}
+        autocomplete="off"
       />
     ) : (
-      <Input
+      <input
         className={classStyle}
         type={inputType}
         placeholder={this.props.placeholder}
@@ -43,6 +44,7 @@ class InputField extends Component {
         required={this.props.isRequired}
         disabled={this.props.disabled}
         value={this.props.value ? this.props.value : undefined}
+        autoComplete="off"
       />
     );
     return (
